@@ -23,8 +23,40 @@
  * ```
  * */
 export function calcTileType(index, boardSize) {
-  // TODO: ваш код будет тут
-  return 'center';
+  const bigIndex = boardSize - 1;
+  const y = Math.floor(index / boardSize);
+  const x = index % boardSize;
+
+  if (0 < x && x < bigIndex && 0 < y && y < bigIndex) {
+    return 'center';
+  } else if ((x !== 0 && x !== bigIndex) || (y !== 0 && y !== bigIndex)){
+    if (y === 0) {
+      return "top";
+    }
+    if (y === bigIndex) {
+      return "bottom";
+    }
+    if (x === 0) {
+      return "left";
+    }
+    if (x === bigIndex) {
+      return "right";
+    }
+  } else {
+    if (x === 0 && y === 0) {
+      return "top-left";
+    }
+    if (x === 0 && y !== 0) {
+      return "bottom-left";
+    }
+    if (x !== 0 && y === 0) {
+      return "top-right";
+    }
+    if (x !== 0 && y !== 0) {
+      return "bottom-right";
+    }
+  }
+  
 }
 
 export function calcHealthLevel(health) {
